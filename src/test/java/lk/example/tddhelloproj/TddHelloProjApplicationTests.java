@@ -43,11 +43,18 @@ class TddHelloProjApplicationTests {
     }
 
     @Test
-    void checkInvalidNumericISBN(){
+    void checkNonNumericISBNNotAllowed(){
         ValidateISBN validator = new ValidateISBN();
         Assertions.assertThrows(NumberFormatException.class, () -> {
             boolean result = validator.checkISBN("bbnnmmggkk");
         });
+    }
+
+    @Test
+    void checkLastDigitisX(){
+        ValidateISBN validator = new ValidateISBN();
+        boolean result = validator.checkISBN("012000030X");
+        Assertions.assertTrue(result);
     }
 
 }
